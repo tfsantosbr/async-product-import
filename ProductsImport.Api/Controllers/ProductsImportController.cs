@@ -37,7 +37,6 @@ namespace ProductsImport.Api.Controllers
                 return BadRequest("Images pack not found");
             }
 
-
             var response = await ImportFilesAsync(spreadsheet, compressedImages);
 
             return Ok(new
@@ -69,7 +68,7 @@ namespace ProductsImport.Api.Controllers
             using var compressedImagesStream = compressedImages.OpenReadStream();
             using var zipArchive = new ZipArchive(compressedImagesStream);
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 var image = zipArchive.GetEntry("shutterstock_109410320.jpg");
                 if (image != null)
